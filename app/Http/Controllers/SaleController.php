@@ -40,7 +40,7 @@ class SaleController extends Controller
         Sale::create($data);
         // Update the product's stock
         $product = Product::find($request->product_id);
-        $product->stock -= $request->quantity;
+        $product->quantity -= $request->quantity;
         $product->save();
         // Update the product's sales count
 
