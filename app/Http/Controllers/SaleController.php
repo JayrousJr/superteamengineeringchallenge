@@ -16,9 +16,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('/pages/sales/list', [
-            'sales' => Sale::latest()->get(),
-        ]);
+        $sales = Sale::where('created_at', '>=', now()->subDays(7))
+            ->latest()
+            ->get();
+        return view('/pages/sales/list', compact('sales'));
     }
 
     /**
@@ -27,7 +28,7 @@ class SaleController extends Controller
     public function create()
     {
         $products = Product::where("quantity", ">", 0)->get();
-        return view('/pages/sales/create', \compact('products'));
+        return view('/pages/sales/create', compact('products'));
     }
 
     /**
