@@ -23,10 +23,10 @@
                     @csrf
                     <div class="mb-4">
                         <label for="product_id" class="block text-sm font-medium text-gray-700">Product</label>
-                        <select name="product_id" id="product_id" class="mt-1 block w-full rounded border-gray-300">
+                        <select name="product_id" id="product_id" class=" mt-1 block w-full rounded border-gray-300">
                             <option value="">-- Select a product --</option>
                             @foreach ($products as $product)
-                                <option value="{{ $product->id }}">
+                                <option value="{{ $product->id }}" {{ old("product_id") == $product->id ? 'selected' : ""}}>
                                     {{ $product->name }} (Available {{ $product->quantity }} - Price:
                                     Tsh {{ $product->price }})
                                 </option>
@@ -50,9 +50,9 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">Make
-                            Sale</button>
+                        <x-primary-button class="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+                            Add Product
+                        </x-primary-button>
                     </div>
                 </form>
             </div>

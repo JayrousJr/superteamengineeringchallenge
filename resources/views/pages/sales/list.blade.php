@@ -40,8 +40,6 @@
                                 Recorded By</th>
                             <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Sold At</th>
-                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
@@ -49,7 +47,7 @@
                             <tr>
                                 <td class="px-4 py-3">{{ $sale->product->name }}</td>
                                 <td class="px-4 py-3">{{ $sale->quantity }}</td>
-                                <td class="px-4 py-3">{{ $sale->price }}</td>
+                                <td class="px-4 py-3">{{ $sale->amount }}</td>
                                 <td class="px-4 py-3">{{ $sale->user->name }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-500">{{ $sale->created_at->diffForHumans() }}</td>
                             </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSaleRequest extends FormRequest
@@ -23,9 +24,24 @@ class StoreSaleRequest extends FormRequest
     {
         return [
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1',
             'amount' => 'required|numeric|min:0',
-            'user_id' => 'required|exists:users,id',
+            'quantity' => [
+                'required',
+                'integer',
+                'min:1',
+                function ($attribute, $value, $fail) {
+                    $productId = $this->input("product_id"); // Get the product ID for the current index
+        
+                    // Fetch product stock from the database
+                    $product = Product::find($productId);
+                    if (!$product) {
+                        return $fail("No Product");
+                    }
+                    if ($value > $product->quantity) {
+                        return $fail("Maximum quantity is {$product->quantity}");
+                    }
+                },
+            ],
         ];
     }
 }

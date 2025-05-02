@@ -26,7 +26,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::where("quantity", ">", 0)->get();
         return view('/pages/sales/create', \compact('products'));
     }
 
@@ -35,7 +35,6 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        dd($request->all());
         DB::beginTransaction();
         try {
             $data = [
