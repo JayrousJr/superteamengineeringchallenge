@@ -6,6 +6,7 @@ use App\Models\Sale;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -33,7 +34,17 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        //
+        $data = [
+            "user_id" => Auth::id(),
+        ] + $request->validated();
+        Sale::create($data);
+        // Update the product's stock
+        $product = Product::find($request->product_id);
+        $product->stock -= $request->quantity;
+        $product->save();
+        // Update the product's sales count
+
+        return redirect()->route('sales.index')->with('success', 'Sale created successfully.');
     }
 
     /**
