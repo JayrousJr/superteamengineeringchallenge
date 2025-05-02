@@ -50,7 +50,8 @@
                                 <td class="px-4 py-3">{{ $product->user->name }}</td>
                                 <td class="px-4 py-3 text-sm text-gray-500">{{ $product->created_at->diffForHumans() }}</td>
                                 <td class="px-4 py-3">
-                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="{{ route("products.show", $product->id) }}"
+                                        class="text-blue-600 hover:underline">Edit</a>
                                     <form action="{{ route('products.destroy', $product) }}" method="post" class="inline">
                                         @csrf
                                         @method('DELETE')

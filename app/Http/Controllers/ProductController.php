@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('/pages/products/view', compact('product'));
     }
 
     /**
@@ -63,7 +63,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        try {
+            $product->update($request->validated());
+            return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->route('products.index')->with('error', 'Could not update product. ' . $th->getMessage());
+        }
     }
 
     /**
