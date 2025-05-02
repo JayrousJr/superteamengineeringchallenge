@@ -21,4 +21,4 @@ I have buikt an ERP "Mauzo" for MSMEs,  this is built with laravel blade. It can
 
 ##design choice
 i have used Laravel breeze,helps me to make authentication. Laravel MVP structure helps me to keep code reusable and clean.
-i did not focus much on UI but on usability and speed, I used blade component to improve usability and mainatining a consistent layot.
+i did not focus much on UI but on usability and speed, I used blade component to improve usability and mainatining a consistent layot. taht is 
