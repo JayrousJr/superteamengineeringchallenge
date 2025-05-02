@@ -16,7 +16,8 @@
             <div class="bg-white shadow-md rounded-lg p-6">
                 <div class="flex justify-end mb-4">
                     <a href="{{ route('stock.export.pdf') }}" target="_blank"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700">Print Stock</a>
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700">Print Stock PDF</a>
+
                 </div>
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-medium">All Products</h3>

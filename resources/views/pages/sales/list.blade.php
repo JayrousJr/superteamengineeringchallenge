@@ -21,6 +21,11 @@
                 </div>
             @endif
             <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex justify-end mb-4">
+                    <a href="{{ route('sale.export.csv') }}" target="_blank"
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700">Print Stock CSV</a>
+
+                </div>
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-medium">All Sales</h3>
                     <a href="{{ route('sales.create') }}"

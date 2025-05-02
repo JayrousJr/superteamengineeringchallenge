@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/stock/export/pdf', [PrintingController::class, 'stock'])->name('stock.export.pdf');
     Route::get('/sale/{sale}/pdf', [PrintingController::class, 'sale'])->name('sale.export.pdf');
+    Route::get('/sale/export/csv', [PrintingController::class, 'exportCSV'])->name('sale.export.csv');
 });
 
 require __DIR__ . '/auth.php';
