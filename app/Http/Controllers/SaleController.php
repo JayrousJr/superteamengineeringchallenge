@@ -35,12 +35,15 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
+        dd($request->all());
         DB::beginTransaction();
         try {
             $data = [
                 "user_id" => Auth::id(),
             ] + $request->validated();
+
             Sale::create($data);
+
             // Update the product's stock
             $product = Product::find($request->product_id);
             $product->quantity -= $request->quantity;

@@ -8,6 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+            @if (session('success'))
+                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)"
+                    class="max-w-md mx-auto mt-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded-md shadow">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if (session('error'))
+                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)"
+                    class="max-w-md mx-auto mt-4 p-4 bg-red-100 text-red-800 border border-red-300 rounded-md shadow">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="bg-white shadow-md rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-medium">All Sales</h3>

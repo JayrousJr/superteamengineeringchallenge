@@ -21,7 +21,6 @@
 
                 <form method="POST" action="{{ route('sales.store') }}" class="bg-white p-6 rounded shadow">
                     @csrf
-
                     <div class="mb-4">
                         <label for="product_id" class="block text-sm font-medium text-gray-700">Product</label>
                         <select name="product_id" id="product_id" class="mt-1 block w-full rounded border-gray-300">
@@ -37,18 +36,17 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                        <input type="number" name="quantity" id="quantity"
-                            class="mt-1 block w-full rounded border-gray-300" min="1">
-                        @error('quantity') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+                        <x-input-label for="quantity" value="Quantity" />
+                        <x-text-input id="quantity" class="block mt-1 w-full" type="number" name="quantity"
+                            :value="old('quantity')" autofocus />
+                        <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                     </div>
 
                     <div class="mb-4">
-                        <label for="amount" class="block text-sm font-medium text-gray-700">Selling Price
-                        </label>
-                        <input type="number" name="amount" id="amount" class="mt-1 block w-full rounded border-gray-300"
-                            step="1">
-                        @error('amount') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+                        <x-input-label for="amount" value="Selling Price" />
+                        <x-text-input id="amount" class="block mt-1 w-full" type="number" name="amount"
+                            :value="old('amount')" autofocus />
+                        <x-input-error :messages="$errors->get('amount')" class="mt-2" />
                     </div>
 
                     <div class="flex justify-end">
