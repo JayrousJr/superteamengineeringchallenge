@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends Model
 {
     protected $fillable = [
-        "product",
+        "product_id",
         "quantity",
         "amount",
         "user_id",
@@ -16,5 +16,9 @@ class Sale extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

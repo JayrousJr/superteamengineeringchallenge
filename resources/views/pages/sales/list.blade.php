@@ -7,10 +7,47 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("Welcome to Tunzaa MAuzo!") }}
+
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-medium">All Sales</h3>
+                    <a href="{{ route('sales.create') }}"
+                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">+ Make Sale</a>
                 </div>
+
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Product Name</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Quantity</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Price</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Recorded By</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Sold At</th>
+                            <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @forelse($sales as $sale)
+                            <tr>
+                                <td class="px-4 py-3">{{ $sale->product->name }}</td>
+                                <td class="px-4 py-3">{{ $sale->quantity }}</td>
+                                <td class="px-4 py-3">{{ $sale->price }}</td>
+                                <td class="px-4 py-3">{{ $sale->user->name }}</td>
+                                <td class="px-4 py-3 text-sm text-gray-500">{{ $sale->created_at->diffForHumans() }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-4 py-3 text-center text-gray-500">No sale found.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
