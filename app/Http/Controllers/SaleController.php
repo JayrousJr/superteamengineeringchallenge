@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -34,17 +35,23 @@ class SaleController extends Controller
      */
     public function store(StoreSaleRequest $request)
     {
-        $data = [
-            "user_id" => Auth::id(),
-        ] + $request->validated();
-        Sale::create($data);
-        // Update the product's stock
-        $product = Product::find($request->product_id);
-        $product->quantity -= $request->quantity;
-        $product->save();
-        // Update the product's sales count
+        DB::beginTransaction();
+        try {
+            $data = [
+                "user_id" => Auth::id(),
+            ] + $request->validated();
+            Sale::create($data);
+            // Update the product's stock
+            $product = Product::find($request->product_id);
+            $product->quantity -= $request->quantity;
+            $product->save();
+            DB::commit();
+            return redirect()->route('sales.index')->with('success', 'Sale created successfully.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('sales.index')->with('error', 'Error creating sale: ' . $th->getMessage());
+        }
 
-        return redirect()->route('sales.index')->with('success', 'Sale created successfully.');
     }
 
     /**

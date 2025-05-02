@@ -28,7 +28,8 @@
                             <option value="">-- Select a product --</option>
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">
-                                    {{ $product->name }} (Available: {{ $product->quantity }})
+                                    {{ $product->name }} (Available {{ $product->quantity }} - Price:
+                                    Tsh {{ $product->price }})
                                 </option>
                             @endforeach
                         </select>
@@ -43,7 +44,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="amount" class="block text-sm font-medium text-gray-700">Selling Price</label>
+                        <label for="amount" class="block text-sm font-medium text-gray-700">Selling Price
+                        </label>
                         <input type="number" name="amount" id="amount" class="mt-1 block w-full rounded border-gray-300"
                             step="1">
                         @error('amount') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
