@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrintingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaleController;
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('sales', SaleController::class);
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
+    Route::get('/stock/export/pdf', [PrintingController::class, 'stock'])->name('stock.export.pdf');
+    Route::get('/sale/{sale}/pdf', [PrintingController::class, 'sale'])->name('sale.export.pdf');
 });
 
 require __DIR__ . '/auth.php';

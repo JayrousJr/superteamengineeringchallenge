@@ -14,12 +14,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div class="bg-white shadow-md rounded-lg p-6">
+                <div class="flex justify-end mb-4">
+                    <a href="{{ route('products.create') }}"
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-blue-700">Print Stock</a>
+                </div>
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-medium">All Products</h3>
                     <a href="{{ route('products.create') }}"
                         class="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">+ Add Product</a>
                 </div>
-
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr>
