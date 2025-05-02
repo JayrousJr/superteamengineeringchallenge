@@ -11,13 +11,13 @@ I have buikt an ERP "Mauzo" for MSMEs,  this is built with laravel blade. It can
 
 
 ## How to run the repo
-git clone https://github.com/JayrousJr/superteamengineeringchallenge.git
-cd superteamengineeringchallenge
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-php artisan serve
+-git clone https://github.com/JayrousJr/superteamengineeringchallenge.git
+-cd superteamengineeringchallenge
+-composer install
+-cp .env.example .env
+-php artisan key:generate
+-php artisan migrate
+-php artisan serve
 
 ##design choice
 i have used Laravel breeze,helps me to make authentication. Laravel MVP structure helps me to keep code reusable and clean.
