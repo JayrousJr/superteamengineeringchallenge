@@ -13,7 +13,7 @@ class PrintingController extends Controller
     {
         try {
             $products = Product::all();
-            $pdf = Pdf::loadView('export.stock', compact('products'));
+            $pdf = Pdf::loadView('exports.stock', compact('products'));
             return $pdf->download('stock.pdf');
 
         } catch (\Throwable $th) {
@@ -25,7 +25,7 @@ class PrintingController extends Controller
     {
         try {
             $sale = Sale::findOrFail($sale);
-            $pdf = Pdf::loadView('export.sale', compact('sale'));
+            $pdf = Pdf::loadView('exports.sale', compact('sale'));
             return $pdf->download("Sale-$sale->id.pdf");
 
         } catch (\Throwable $th) {

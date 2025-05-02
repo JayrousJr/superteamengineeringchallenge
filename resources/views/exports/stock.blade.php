@@ -25,23 +25,26 @@
 </head>
 
 <body>
-    <h2>Sales Report</h2>
+    <h2>TUNZAA MAUZO INVENTORY MANAGEMENT</h2>
+    <h2>Inventory Stock as on date {{ now() }}</h2>
     <table>
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Amount</th>
+                <th>Import Date</th>
+                <th>Product name</th>
+                <th>Recorded by</th>
+                <th>Available Quantity</th>
+                <th>Price(Tsh)</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($sales as $sale)
+            @foreach ($products as $product)
                 <tr>
-                    <td>{{ $sale->created_at->format('Y-m-d') }}</td>
-                    <td>{{ $sale->product->name ?? 'N/A' }}</td>
-                    <td>{{ $sale->quantity }}</td>
-                    <td>{{ number_format($sale->amount, 2) }}</td>
+                    <td>{{ $product->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $product->name ?? 'N/A' }}</td>
+                    <td>{{ $product->user->name ?? 'N/A' }}</td>
+                    <td>{{ $product->quantity }}</td>
+                    <td>{{ number_format($product->price, 2) }}</td>
                 </tr>
             @endforeach
         </tbody>

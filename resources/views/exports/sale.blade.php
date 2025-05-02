@@ -2,50 +2,54 @@
 <html>
 
 <head>
-    <title>Sales Report</title>
+    <title>Sale #{{ $sale->id }}</title>
     <style>
         body {
             font-family: sans-serif;
-            font-size: 12px;
+            font-size: 13px;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
 
-        th,
-        td {
+        td,
+        th {
             border: 1px solid #444;
             padding: 8px;
-            text-align: left;
         }
     </style>
 </head>
 
 <body>
-    <h2>Sales Report</h2>
+    <h2 class="title">Sale Receipt #{{ $sale->id }}</h2>
+
     <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($sales as $sale)
-                <tr>
-                    <td>{{ $sale->created_at->format('Y-m-d') }}</td>
-                    <td>{{ $sale->product->name ?? 'N/A' }}</td>
-                    <td>{{ $sale->quantity }}</td>
-                    <td>{{ number_format($sale->amount, 2) }}</td>
-                </tr>
-            @endforeach
-        </tbody>
+        <tr>
+            <th>Date</th>
+            <td>{{ $sale->created_at->format('Y-m-d H:i') }}</td>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <td>{{ $sale->product->name ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ $sale->quantity }}</td>
+        </tr>
+        <tr>
+            <th>Total Amount</th>
+            <td>{{ number_format($sale->amount, 2) }}</td>
+        </tr>
     </table>
+
+    <p style="margin-top: 20px;">Thank you for your purchase!</p>
 </body>
 
 </html>
